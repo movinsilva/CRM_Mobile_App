@@ -21,7 +21,7 @@ class DefaultBackground extends StatelessWidget {
       //making the navigation drawer icon black
       iconTheme: new IconThemeData(color: Colors.black),
       elevation: 0,
-      title: AutoSizeText("KMC Electronics",
+      title: AutoSizeText("PSK Engineering Solutions",
       style: GoogleFonts.poppins(color: Colors.black),),
 
     );

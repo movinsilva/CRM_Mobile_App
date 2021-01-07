@@ -18,8 +18,11 @@ class Login extends StatelessWidget {
             width: size.width,
             child: Column(
               children: [
+                Image(image: AssetImage("assets/login_img.jpg"),
+                  fit: BoxFit.fitWidth,
+                ),
                 SizedBox(
-                  height: size.height * 0.4,
+                  height: size.height * 0.05,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),

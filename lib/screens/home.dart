@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crm/global/default_background.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
     return DefaultBackground(
       interior: Column(
@@ -30,12 +30,14 @@ class Home extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(Icons.settings,
-                  color: Colors.white,
-                  size: 45,),
+                  Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                    size: 45,
+                  ),
                   Container(
                     width: 3,
-                    height: size.height*0.07,
+                    height: size.height * 0.07,
                     decoration: BoxDecoration(
                       color: Colors.white,
                     ),
@@ -49,10 +51,54 @@ class Home extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 25,
           ),
           Row(
-            children: [Container],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                height: size.height * 0.17,
+                width: size.width * 0.42,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Colors.white,
+                    boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20, offset: Offset(0, 0), spreadRadius: -15)]),
+                child: Column(
+                  children: [
+                    Image(
+                      image: AssetImage("assets/tv.png"),
+                      height: size.height * 0.13,
+                      width: size.width * 0.32,
+                    ),
+                    AutoSizeText(
+                      "Orders Count",
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                height: size.height * 0.17,
+                width: size.width * 0.42,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Colors.white,
+                    boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20, offset: Offset(0, 0), spreadRadius: -15)]),
+                child: Column(
+                  children: [
+                    Image(
+                      image: AssetImage("assets/cart.png"),
+                      height: size.height * 0.13,
+                      width: size.width * 0.32,
+                    ),
+                    AutoSizeText(
+                      "Sell Item",
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
+                    )
+                  ],
+                ),
+              )
+            ],
           )
         ],
       ),
