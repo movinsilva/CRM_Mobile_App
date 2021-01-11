@@ -8,13 +8,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return DefaultBackground(
+      title: "PSK Enginnering Solutions",
       interior: Column(
         children: [
           SizedBox(
             height: 25,
           ),
           InkWell(
-            onTap: () => Navigator.of(context).pushNamed("/home"),
+            onTap: () => Navigator.of(context).pushNamed("/start_a_repair"),
             child: Container(
               width: size.width * 0.8,
               height: size.height * 0.12,
@@ -51,51 +52,59 @@ class Home extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 25,
+            height: 45,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                height: size.height * 0.17,
-                width: size.width * 0.42,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Colors.white,
-                    boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20, offset: Offset(0, 0), spreadRadius: -15)]),
-                child: Column(
-                  children: [
-                    Image(
-                      image: AssetImage("assets/tv.png"),
-                      height: size.height * 0.13,
-                      width: size.width * 0.32,
-                    ),
-                    AutoSizeText(
-                      "Orders Count",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
-                    )
-                  ],
+              InkWell(
+                onTap: () => Navigator.of(context).pushNamed("/orders"),
+                child: Container(
+                  height: size.height * 0.17,
+                  width: size.width * 0.42,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: Colors.white,
+                      boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20, offset: Offset(0, 0), spreadRadius: -15)]),
+                  child: Column(
+                    children: [
+                      Image(
+                        image: AssetImage("assets/tv.png"),
+                        height: size.height * 0.13,
+                        width: size.width * 0.32,
+                      ),
+                      AutoSizeText(
+                        "Orders Count",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                height: size.height * 0.17,
-                width: size.width * 0.42,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Colors.white,
-                    boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20, offset: Offset(0, 0), spreadRadius: -15)]),
-                child: Column(
-                  children: [
-                    Image(
-                      image: AssetImage("assets/cart.png"),
-                      height: size.height * 0.13,
-                      width: size.width * 0.32,
-                    ),
-                    AutoSizeText(
-                      "Sell Item",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
-                    )
-                  ],
+              InkWell(
+                onTap: () {
+
+                },
+                child: Container(
+                  height: size.height * 0.17,
+                  width: size.width * 0.42,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: Colors.white,
+                      boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20, offset: Offset(0, 0), spreadRadius: -15)]),
+                  child: Column(
+                    children: [
+                      Image(
+                        image: AssetImage("assets/cart.png"),
+                        height: size.height * 0.13,
+                        width: size.width * 0.32,
+                      ),
+                      AutoSizeText(
+                        "Sell Item",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],

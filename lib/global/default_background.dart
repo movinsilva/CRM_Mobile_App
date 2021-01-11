@@ -21,8 +21,8 @@ class DefaultBackground extends StatelessWidget {
       //making the navigation drawer icon black
       iconTheme: new IconThemeData(color: Colors.black),
       elevation: 0,
-      title: AutoSizeText("PSK Engineering Solutions",
-      style: GoogleFonts.poppins(color: Colors.black),),
+      title: AutoSizeText(title,
+      style: GoogleFonts.poppins(color: Colors.blue[900], fontWeight: FontWeight.w500),),
 
     );
 
@@ -31,6 +31,7 @@ class DefaultBackground extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: NavigationDrawer(),
       appBar: appBar,
       body: Container(

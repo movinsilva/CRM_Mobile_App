@@ -1,7 +1,12 @@
+import 'package:crm/logic/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatelessWidget {
+
+  static TextEditingController usernameController = TextEditingController();
+  static TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -22,11 +27,12 @@ class Login extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                 ),
                 SizedBox(
-                  height: size.height * 0.05,
+                  height: size.height * 0.01,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
                   child: TextFormField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       labelText: "Username",
                       icon: Icon(
@@ -39,6 +45,8 @@ class Login extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
                   child: TextFormField(
+                    controller: passwordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Password",
                       icon: Icon(
@@ -49,10 +57,20 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.2,
+                  height: size.height * 0.18,
                 ),
                 InkWell(
-                  onTap: () => Navigator.of(context).pushNamed("/home"),
+                  onTap: () {
+                    LoginPageData.loginAuthentication(usernameController.text.trim(), passwordController.text.trim()).then((value) {
+                      if(value){
+                        Navigator.of(context).pushNamed("/home");
+                      } else {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text("Error Occurred ,Please try again",style: GoogleFonts.poppins(color: Colors.black54),),
+                        ));
+                      }
+                    });
+                     },
                   child: Container(
                     width: size.width * 0.6,
                     height: size.height * 0.06,
@@ -72,7 +90,9 @@ class Login extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                // Image(image: AssetImage("assets/bg.jpg"),
+                // fit: BoxFit.cover,)
               ],
             ),
           ),

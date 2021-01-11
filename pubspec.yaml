@@ -30,6 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.0
   google_fonts: ^1.1.1
   auto_size_text: ^2.1.0
+  uuid: ^2.2.2
+  http: ^0.12.2
+  shared_preferences: ^0.5.12+2
 
 
 dev_dependencies:

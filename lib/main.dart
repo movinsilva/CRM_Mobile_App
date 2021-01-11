@@ -1,5 +1,12 @@
+import 'package:crm/screens/authentication.dart';
+import 'package:crm/screens/checking_finished_list_item.dart';
+import 'package:crm/screens/checking_list_item.dart';
 import 'package:crm/screens/home.dart';
+import 'package:crm/screens/list_view.dart';
 import 'package:crm/screens/login.dart';
+import 'package:crm/screens/orders.dart';
+import 'package:crm/screens/repair_summary.dart';
+import 'package:crm/screens/start_a_repair.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,6 +21,12 @@ class MyApp extends StatelessWidget {
       routes: {
         "/login" : (context) => Login(),
         "/home" : (context) => Home(),
+        "/start_a_repair" : (context) => StartARepair(),
+        "/orders" : (context) => Orders(),
+        "/listView" : (context) => ListViewScreen(),
+        "/checking_list_item" : (context) => CheckingListItem(),
+        "/checking_finished_list_item" : (context) => CheckingFinishedListItem(),
+        "/repair_summary" : (context) => RepairSummary(),
       },
       home: Login(),
     );
