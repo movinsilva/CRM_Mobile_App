@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         "/checking_finished_list_item" : (context) => CheckingFinishedListItem(),
         "/repair_summary" : (context) => RepairSummary(),
       },
-      home: Login(),
+      home: Authentication(),
     );
   }
 }

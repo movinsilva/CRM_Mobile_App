@@ -42,7 +42,7 @@ class RepairSummary extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical:  4),
-                      child: Center(child: AutoSizeText("INV0011")),
+                      child: Center(child: AutoSizeText(args.invoiceId.toString())),
                     ),
                   )
                 ],
@@ -55,6 +55,10 @@ class RepairSummary extends StatelessWidget {
               style: textStyle,),
               SizedBox(height: 10,),
 
+              Text("category : " + args.itemCategory.toString(),
+                style: textStyle,),
+              SizedBox(height: 10,),
+
               Text(args.itemModel.toString(),
                 style: textStyle,),
               SizedBox(height: 10,),
@@ -64,6 +68,7 @@ class RepairSummary extends StatelessWidget {
               SizedBox(height: 10,),
 
               Text(args.reason.toString(),
+                maxLines: 5,
                 style: textStyle,),
               SizedBox(height: 10,),
 
@@ -71,25 +76,30 @@ class RepairSummary extends StatelessWidget {
                 style: textStyle,),
               SizedBox(height: 10,),
 
-              Text("Checking Fee : Rs." + args.checkingFee.toString(),
+              Text("Checking Fee : Rs. " + args.checkingFee.toString(),
                 style: textStyle,),
               SizedBox(height: 30,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(13)),
-                        color: Colors.orange[400]
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
-                      child: Center(
-                        child: AutoSizeText(
-                          "Confirm",
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).pushNamed("/home");
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(13)),
+                          color: Colors.orange[400]
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
+                        child: Center(
+                          child: AutoSizeText(
+                            "Confirm",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
