@@ -7,10 +7,10 @@ class OrdersData{
     var jsonData = json.decode(data.body);
     List orderNumbers = [];
     orderNumbers.add(jsonData['checklistcount']);
-    orderNumbers.add('checkedovercount');
-    orderNumbers.add('startedcount');
-    orderNumbers.add('completedcount');
-    orderNumbers.add('historycount');
+    orderNumbers.add(jsonData['checkedovercount']);
+    orderNumbers.add(jsonData['startedcount']);
+    orderNumbers.add(jsonData['completedcount']);
+    orderNumbers.add(jsonData['historycount']);
     return orderNumbers;
   }
 }

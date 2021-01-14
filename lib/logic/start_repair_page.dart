@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class StartRepairData{
   static Future startTheRepair(StartingRepair model) async {
     DateTime now = DateTime.now();
-    var date = now.day.toString();
+    var date = now.toString();
     var month = now.month.toString();
     var year = now.year.toString();
     var url = await http.get("https://script.google.com/macros/s/AKfycbyLvuW0FZKn8f6v8o5DfUXZYpEb0IpW7AgtnWgFYqJbZHjuzoOfrw8I/exec?request=uploadinvoice&serialno=" + model.serialNo +

@@ -1,19 +1,20 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:crm/args/checking_finished_list_item_details.dart';
+import 'package:crm/args/started_list_item_details.dart';
 import 'package:crm/global/default_background.dart';
-import 'package:crm/logic/checking_finished_list_item_page.dart';
+import 'package:crm/logic/completed_list_item_page.dart';
+import 'package:crm/screens/started_list_item.dart';
 import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CheckingFinishedListItem extends StatelessWidget {
+class CompletedListIem extends StatelessWidget {
 
-  static TextEditingController depositingAmountController = new TextEditingController();
+  static TextEditingController finalPaidAmountController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
 
-    final CheckingFinishedListItemDetails args = ModalRoute.of(context).settings.arguments;
+    final StartedListItemDetails args = ModalRoute.of(context).settings.arguments;
 
     return DefaultBackground(
       title: args.title,
@@ -61,6 +62,18 @@ class CheckingFinishedListItem extends StatelessWidget {
                     fontSize: 18
                 ),),
 
+
+              SizedBox(
+                height: 25,
+              ),
+              AutoSizeText(args.createdDate.toString(),
+                style: GoogleFonts.poppins(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18
+                ),),
+
+
               SizedBox(
                 height: 8,
               ),
@@ -91,24 +104,62 @@ class CheckingFinishedListItem extends StatelessWidget {
                     fontSize: 18
                 ),),
 
-              SizedBox(height: 30,),
-              AutoSizeText("Amount depositing as advance",
+
+              SizedBox(
+                height: 8,
+              ),
+              AutoSizeText("Rs. " + args.depositedAmount.toString() + " paid as advanced",
                 style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18
+                ),),
+
+
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  AutoSizeText("Remaining Amount to be paid",
+                    style: GoogleFonts.poppins(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18
+                    ),),
+                  Spacer(),
+                  AutoSizeText((args.checkingFee + args.estimatedFee - args.depositedAmount).toString(),
+                    style: GoogleFonts.poppins(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18
+                    ),)
+                ],
+              ),
+
+
+              SizedBox(height: 40,),
+              AutoSizeText("Final paid amount",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 60),
+                padding: const EdgeInsets.only(left: 50, right: 70),
                 child:
                 TextFormField(
-                  controller: depositingAmountController,
+                  controller: finalPaidAmountController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   ),
                 ),
               ),
+
+
+              SizedBox(height: 30,),
+
 
 
               SizedBox(
@@ -130,15 +181,14 @@ class CheckingFinishedListItem extends StatelessWidget {
                                 backgroundColor: Colors.transparent,
                                 body: Center(
                                   child: FutureBuilder(
-                                    future: CheckingFinishedListItemData.moveToStartedList(args.invoiceNo.toString(), depositingAmountController.text.toString()),
+                                    future: CompletedListIemData.moveToHistory(args.invoiceNo.toString(), finalPaidAmountController.text.toString()),
                                     builder: (BuildContext context, AsyncSnapshot snapshot){
                                       if(snapshot.connectionState == ConnectionState.done) {
                                         if (snapshot.data != null) {
 
                                           if(snapshot.data) {
-
-                                            depositingAmountController.text = "";
-                                            return DialogWidget(title: "Successfully Started", page: "/home",);
+                                            finalPaidAmountController.text = "";
+                                            return DialogWidget(title: "Successfully Moved to History", page: "/home",);
                                           } else {
                                             return DialogWidget(title: "Error Occurred while processing the request\n Please try again \n(If the problem persists contact the developers)", page: "pop",);
                                           }
@@ -183,7 +233,7 @@ class CheckingFinishedListItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [ AutoSizeText(
-                  "Moving to started list",
+                  "Moving to history",
                   style: GoogleFonts.poppins(
                       color: Colors.black54,
                       fontSize: 10
@@ -192,6 +242,9 @@ class CheckingFinishedListItem extends StatelessWidget {
                 ],
               ),
 
+              SizedBox(
+                height: 400,
+              )
             ],
           ),
         ),

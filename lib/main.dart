@@ -1,12 +1,14 @@
 import 'package:crm/screens/authentication.dart';
 import 'package:crm/screens/checking_finished_list_item.dart';
 import 'package:crm/screens/checking_list_item.dart';
+import 'package:crm/screens/completed_list_item.dart';
 import 'package:crm/screens/home.dart';
 import 'package:crm/screens/list_view.dart';
 import 'package:crm/screens/login.dart';
 import 'package:crm/screens/orders.dart';
 import 'package:crm/screens/repair_summary.dart';
 import 'package:crm/screens/start_a_repair.dart';
+import 'package:crm/screens/started_list_item.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
         "/checking_list_item" : (context) => CheckingListItem(),
         "/checking_finished_list_item" : (context) => CheckingFinishedListItem(),
         "/repair_summary" : (context) => RepairSummary(),
+        "/started_list_item" : (context) => StartedListItem(),
+        "/completed_list_item" : (context) => CompletedListIem(),
       },
       home: Authentication(),
     );

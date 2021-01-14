@@ -1,4 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:crm/args/checking_finished_list_item_details.dart';
+import 'package:crm/args/checking_list_item_details.dart';
+import 'package:crm/args/started_list_item_details.dart';
 import 'package:crm/global/default_background.dart';
 import 'package:crm/logic/list_view_page.dart';
 import 'package:crm/models/list_view_model.dart';
@@ -36,7 +39,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.data != null) {
-                  ListViewModel listViewModel = snapshot.data;
+
+                    ListViewModel listViewModel = snapshot.data;
+
                   if (listViewModel.content.length > 0) {
                     return ListView.builder(
                         itemCount: listViewModel.content.length,
@@ -48,9 +53,33 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 InkWell(
                                   onTap: () {
                                     if (args == "Checking List") {
-                                      Navigator.of(context).pushNamed("/checking_list_item", arguments: args);
+
+                                      CheckingListItemDetails map1 = CheckingListItemDetails(listViewModel.content[index].itemmodel, listViewModel.content[index].ownersname,
+                                          listViewModel.content[index].invoiceno, listViewModel.content[index].checkingfees, listViewModel.content[index].date, "Checking List");
+
+                                      Navigator.of(context).pushNamed("/checking_list_item", arguments: map1);
+
                                     } else if (args == "Checking Finished List") {
-                                      Navigator.of(context).pushNamed("/checking_finished_list_item", arguments: args);
+
+                                      CheckingFinishedListItemDetails map2 = CheckingFinishedListItemDetails(listViewModel.content[index].itemmodel,
+                                          listViewModel.content[index].ownersname, listViewModel.content[index].invoiceno, listViewModel.content[index].date,
+                                          listViewModel.content[index].itemfault, listViewModel.content[index].timetocomplete, listViewModel.content[index].checkingfees,
+                                          listViewModel.content[index].estimatedfee, args);
+                                      Navigator.of(context).pushNamed("/checking_finished_list_item", arguments: map2);
+
+                                    } else if(args == "Started List" || args == "Completed List") {
+
+                                      StartedListItemDetails map3 = StartedListItemDetails(listViewModel.content[index].itemmodel, listViewModel.content[index].ownersname,
+                                          listViewModel.content[index].invoiceno, listViewModel.content[index].date, listViewModel.content[index].itemfault,
+                                          listViewModel.content[index].timetocomplete, listViewModel.content[index].checkingfees, listViewModel.content[index].estimatedfee,
+                                          listViewModel.content[index].depositamount, args);
+
+                                      if(args == "Started List") {
+                                        Navigator.of(context).pushNamed("/started_list_item", arguments: map3);
+                                      } else if(args == "Completed List"){
+                                        Navigator.of(context).pushNamed("/completed_list_item", arguments:  map3);
+                                      }
+
                                     }
                                   },
                                   child: Row(

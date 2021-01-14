@@ -7,6 +7,7 @@ import 'package:crm/args/repair_details.dart';
 import 'package:crm/args/starting_repair.dart';
 import 'package:crm/global/default_background.dart';
 import 'package:crm/logic/start_repair_page.dart';
+import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:crm/widgets/start_a_repair_screen/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -394,12 +395,7 @@ class StartARepair extends StatelessWidget {
                                       );
 
                                     } else {
-                                      return Center(
-                                          child: AutoSizeText(
-                                            "Error Occurred\n Please try again \n(If the problem persists contact the developers)",
-                                            style: GoogleFonts.poppins(fontSize: 17),
-                                          )
-                                      );
+                                      return DialogWidget(title: "Error Occurred\n Please try again \n(If the problem persists contact the developers)", page: "pop",);
                                     }
                                   } else {
                                     return Center(

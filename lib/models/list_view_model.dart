@@ -40,12 +40,17 @@ class Content {
     this.address,
     this.email,
     this.phone,
-    this.status,
     this.itemmodel,
+    this.itemfault,
+    this.timetocomplete,
+    this.estimatedfee,
+    this.depositamount,
+    this.declinedreason,
+    this.finalamount,
   });
 
   var serialno;
-  int invoiceno;
+  var invoiceno;
   var checkingfees;
   dynamic date;
   String itemcategory;
@@ -54,8 +59,13 @@ class Content {
   String address;
   dynamic email;
   dynamic phone;
-  int status;
   String itemmodel;
+  String itemfault;
+  var timetocomplete;
+  var estimatedfee;
+  var depositamount;
+  String declinedreason;
+  var finalamount;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
     serialno: json["serialno"],
@@ -68,8 +78,13 @@ class Content {
     address: json["address"],
     email: json["email"],
     phone: json["phone"],
-    status: json["status"],
     itemmodel: json["itemmodel"],
+    itemfault: json["itemfault"],
+    timetocomplete: json["timetocomplete"],
+    estimatedfee: json["estimatedfee"],
+    depositamount: json["depositamount"],
+    declinedreason: json["declinedreason"],
+    finalamount: json["finalamount"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -83,7 +98,12 @@ class Content {
     "address": address,
     "email": email,
     "phone": phone,
-    "status": status,
     "itemmodel": itemmodel,
+    "itemfault": itemfault,
+    "timetocomplete": timetocomplete,
+    "estimatedfee": estimatedfee,
+    "depositamount": depositamount,
+    "declinedreason": declinedreason,
+    "finalamount": finalamount,
   };
 }
