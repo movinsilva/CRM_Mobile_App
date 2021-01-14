@@ -64,6 +64,16 @@ class CheckingFinishedListItem extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
+              AutoSizeText("Created date : " + args.createdDate.toString().substring(0,10),
+                style: GoogleFonts.poppins(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18
+                ),),
+
+              SizedBox(
+                height: 8,
+              ),
               AutoSizeText(args.daysToComplete.toString() + " days to complete",
                 style: GoogleFonts.poppins(
                     color: Colors.black54,

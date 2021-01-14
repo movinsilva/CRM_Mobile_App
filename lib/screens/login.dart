@@ -1,4 +1,5 @@
 import 'package:crm/logic/login_page.dart';
+import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -61,15 +62,53 @@ class Login extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    LoginPageData.loginAuthentication(usernameController.text.trim(), passwordController.text.trim()).then((value) {
-                      if(value){
-                        Navigator.of(context).pushNamed("/home");
-                      } else {
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text("Error Occurred ,Please try again",style: GoogleFonts.poppins(color: Colors.black54),),
-                        ));
-                      }
-                    });
+
+
+                    showGeneralDialog(context: context,
+                        barrierDismissible: false,
+                        pageBuilder: (BuildContext context, _, __) {
+                          return WillPopScope(
+                            //disabling back button
+                            onWillPop: () async => false,
+                            child: Scaffold(
+                              backgroundColor: Colors.transparent,
+                              body: Center(
+                                child: FutureBuilder(
+                                  future: LoginPageData.loginAuthentication(usernameController.text.trim(), passwordController.text.trim()),
+                                  builder: (BuildContext context, AsyncSnapshot snapshot){
+                                    if(snapshot.connectionState == ConnectionState.done) {
+                                      if (snapshot.data != null) {
+
+                                        if(snapshot.data) {
+                                          return DialogWidget(title: "Successfully Logged in", page: "/home",);
+                                        } else {
+                                          return DialogWidget(title: "Error Occurred while processing the request\n Please try again \n(If the problem persists contact the developers)", page: "pop",);
+                                        }
+
+                                      } else {
+                                        return DialogWidget(title: "Error Occurred\n Please try again \n(If the problem persists contact the developers)", page: "pop",);
+                                      }
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator()
+                                      );
+                                    }
+                                  },),
+                              ),
+                            ),
+                          );
+                        });
+
+
+
+
+    //                 LoginPageData.loginAuthentication(usernameController.text.trim(), passwordController.text.trim()).then((value) {
+    // if(value){
+    //                     Navigator.of(context).pushNamed("/home");
+    //                   } else {
+    //                     return DialogWidget(title: "Error Occurred, Please try again", page: "pop",);
+    //                   }
+    //                 });
                      },
                   child: Container(
                     width: size.width * 0.6,

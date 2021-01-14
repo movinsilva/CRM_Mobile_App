@@ -60,9 +60,9 @@ class StartedListItem extends StatelessWidget {
 
 
               SizedBox(
-                height: 25,
+                height: 8,
               ),
-              AutoSizeText(args.createdDate.toString(),
+              AutoSizeText("Created date : " + args.createdDate.toString().substring(0,10),
                 style: GoogleFonts.poppins(
                     color: Colors.black54,
                     fontWeight: FontWeight.w500,
@@ -208,7 +208,7 @@ class StartedListItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [ AutoSizeText(
-                  "Moving to started list",
+                  "Moving to Completed list",
                   style: GoogleFonts.poppins(
                       color: Colors.black54,
                       fontSize: 10

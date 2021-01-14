@@ -30,6 +30,7 @@ class CheckingListItem extends StatelessWidget {
     const double leftOutSidePaddingforTextField = 50;
     const double rightOutSidePaddingForTextField = 70;
 
+
     return DefaultBackground(
       title: args.title,
       interior: SingleChildScrollView(
@@ -73,6 +74,16 @@ class CheckingListItem extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 fontSize: 18
               ),),
+
+              SizedBox(
+                height: 6,
+              ),
+              AutoSizeText("Created Date : " + args.createdDate.toString().substring(0,10) ,
+                style: GoogleFonts.poppins(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18
+                ),),
 
               SizedBox(height: 35,),
               AutoSizeText("Item Fault",

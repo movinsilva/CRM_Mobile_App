@@ -66,13 +66,12 @@ class CompletedListIem extends StatelessWidget {
               SizedBox(
                 height: 25,
               ),
-              AutoSizeText(args.createdDate.toString(),
+              AutoSizeText("Created date : " + args.createdDate.toString().substring(0,10),
                 style: GoogleFonts.poppins(
                     color: Colors.black54,
                     fontWeight: FontWeight.w500,
                     fontSize: 18
                 ),),
-
 
               SizedBox(
                 height: 8,

@@ -1,3 +1,4 @@
+import 'package:crm/provider_models/tab_view_model.dart';
 import 'package:crm/screens/authentication.dart';
 import 'package:crm/screens/checking_finished_list_item.dart';
 import 'package:crm/screens/checking_list_item.dart';
@@ -10,9 +11,19 @@ import 'package:crm/screens/repair_summary.dart';
 import 'package:crm/screens/start_a_repair.dart';
 import 'package:crm/screens/started_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => TabViewModel(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,20 +32,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        "/login" : (context) => Login(),
-        "/home" : (context) => Home(),
-        "/start_a_repair" : (context) => StartARepair(),
-        "/orders" : (context) => Orders(),
-        "/listView" : (context) => ListViewScreen(),
-        "/checking_list_item" : (context) => CheckingListItem(),
-        "/checking_finished_list_item" : (context) => CheckingFinishedListItem(),
-        "/repair_summary" : (context) => RepairSummary(),
-        "/started_list_item" : (context) => StartedListItem(),
-        "/completed_list_item" : (context) => CompletedListIem(),
+        "/login": (context) => Login(),
+        "/home": (context) => Home(),
+        "/start_a_repair": (context) => StartARepair(),
+        "/orders": (context) => Orders(),
+        "/listView": (context) => ListViewScreen(),
+        "/checking_list_item": (context) => CheckingListItem(),
+        "/checking_finished_list_item": (context) => CheckingFinishedListItem(),
+        "/repair_summary": (context) => RepairSummary(),
+        "/started_list_item": (context) => StartedListItem(),
+        "/completed_list_item": (context) => CompletedListIem(),
       },
       home: Authentication(),
     );
   }
 }
-
-

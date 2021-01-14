@@ -39,7 +39,7 @@ class StartARepair extends StatelessWidget {
     final double verticalPaddingforTextField = 4;
 
     const double leftOutSidePaddingforTextField = 50;
-    const double rightOutSidePaddingForTextField = 70;
+    const double rightOutSidePaddingForTextField = 0;
 
     return DefaultBackground(
       title: "Start a Repair",
@@ -56,7 +56,7 @@ class StartARepair extends StatelessWidget {
                 children: [
                   AutoSizeText("Item Category",
                   style: textStyle,),
-                  SizedBox(width: size.width*0.2,),
+                  Spacer(),
                   Dropdown(),
                 ],
               ),
