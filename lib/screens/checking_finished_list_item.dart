@@ -5,6 +5,7 @@ import 'package:crm/logic/checking_finished_list_item_page.dart';
 import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telephony/telephony.dart';
 
 class CheckingFinishedListItem extends StatelessWidget {
 
@@ -146,6 +147,19 @@ class CheckingFinishedListItem extends StatelessWidget {
                                         if (snapshot.data != null) {
 
                                           if(snapshot.data) {
+
+
+                                            String msg = "PSK Electronics\n\nInvoice no : " + args.invoiceNo.toString() + "\nModel : " + args.itemModel.toString() +
+                                      "\nAdvanced payment of Rs. " + depositingAmountController.text.toString() + " is received. Will Contact you after the the completion.\nThank you";
+
+                                            final Telephony telephony = Telephony.instance;
+
+                                            //bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                                            telephony.sendSms(
+                                              to: args.phone.toString(),
+                                              message: msg,
+                                            );
 
                                             depositingAmountController.text = "";
                                             return DialogWidget(title: "Successfully Started", page: "/home",);

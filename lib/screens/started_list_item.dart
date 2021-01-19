@@ -5,6 +5,7 @@ import 'package:crm/logic/started_list_item_page.dart';
 import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telephony/telephony.dart';
 
 class StartedListItem extends StatelessWidget {
   @override
@@ -163,6 +164,20 @@ class StartedListItem extends StatelessWidget {
                                         if (snapshot.data != null) {
 
                                           if(snapshot.data) {
+
+                                            String msg = "PSK Electronics\n\nInvoice no:" + args.invoiceNo.toString() + "\nModel:" + args.itemModel.toString() +
+                                                "\nYour item repair is completed.\nremaining amount to be paid : Rs. " + (args.checkingFee + args.estimatedFee - args.depositedAmount).toString()
+                                                + "\nThank you";
+                                            final Telephony telephony = Telephony.instance;
+
+                                            //bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                                            telephony.sendSms(
+                                              to: args.phone.toString(),
+                                              message: msg,
+                                            );
+
+
                                             return DialogWidget(title: "Successfully Completed", page: "/home",);
                                           } else {
                                             return DialogWidget(title: "Error Occurred while processing the request\n Please try again \n(If the problem persists contact the developers)", page: "pop",);

@@ -6,6 +6,7 @@ import 'package:crm/screens/started_list_item.dart';
 import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telephony/telephony.dart';
 
 class CompletedListIem extends StatelessWidget {
 
@@ -186,6 +187,18 @@ class CompletedListIem extends StatelessWidget {
                                         if (snapshot.data != null) {
 
                                           if(snapshot.data) {
+
+                                            String msg = "PSK Electronics\n\nInvoice no:" + args.invoiceNo.toString() + "\nModel:" + args.itemModel.toString() +
+                                            "\nRemaining amount of Rs."+ finalPaidAmountController.text.toString()+"has paid.\nHope you are satisfied with our service\nThank you.";
+                                            final Telephony telephony = Telephony.instance;
+
+                                            //bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                                            telephony.sendSms(
+                                              to: args.phone.toString(),
+                                              message: msg,
+                                            );
+
                                             finalPaidAmountController.text = "";
                                             return DialogWidget(title: "Successfully Moved to History", page: "/home",);
                                           } else {

@@ -5,6 +5,7 @@ import 'package:crm/logic/checking_list_item_page.dart';
 import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telephony/telephony.dart';
 
 class CheckingListItem extends StatelessWidget {
 
@@ -180,6 +181,19 @@ class CheckingListItem extends StatelessWidget {
                                         if (snapshot.data != null) {
 
                                           if(snapshot.data) {
+
+                                            String msg = "PSK Electronics\n\nYour Item is checked.\nInvoice no:" + args.invoiceNo.toString() +
+                                      "\nContinue your repair with the advance payment of Rs."+ depositAmountController.text.toString() +". For further details contact us.\nThank you.";
+
+                                            final Telephony telephony = Telephony.instance;
+
+                                            //bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                                            telephony.sendSms(
+                                              to: args.phone.toString(),
+                                              message: msg,
+                                            );
+
                                             itemFaultController.text = "";
                                             daysController.text = "";
                                             estimatedFeeController.text = "";
@@ -286,6 +300,17 @@ class CheckingListItem extends StatelessWidget {
                                         if (snapshot.data != null) {
 
                                           if(snapshot.data) {
+
+                                            String msg = "PSK Electronics\n\nInvoice no: "+ args.invoiceNo.toString() + "\nModel: "+ args.itemModel.toString() + "\nYour item is "
+                                                "declined to repair. Contact us for more clarifications.\nThank you.";
+                                            final Telephony telephony = Telephony.instance;
+
+                                            //bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                                            telephony.sendSms(
+                                              to: args.phone.toString(),
+                                              message: msg,
+                                            );
 
                                             itemFaultController.text = "";
                                             daysController.text = "";

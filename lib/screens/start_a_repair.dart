@@ -11,7 +11,7 @@ import 'package:crm/widgets/global/dialog_widget.dart';
 import 'package:crm/widgets/start_a_repair_screen/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sms/sms.dart';
+import 'package:telephony/telephony.dart';
 
 class StartARepair extends StatelessWidget {
   static TextEditingController itemModelController = TextEditingController();
@@ -332,10 +332,35 @@ class StartARepair extends StatelessWidget {
                                                       InkWell(
                                                         onTap: () async {
 
+
+
                                                           if(phoneController.text.length > 8) {
 
+                                                            String message = "PSK Electronics\nInvoice no : " + snapshot.data.toString() +
+                                                                " / Model : " + itemModelController.text + "/ Paid Checking fee : Rs." + checkingFeeController.text.toString() +
+                                                          "\nYour item is accepted for checking & Will Contact you soon after the checking period.Thank You.";
+
+                                                            String msg = "PSK Electronics\n\nYour item is accepted for checking.\nInvoice no : " + snapshot.data.toString() +
+                                                          "\nPaid Checking Fee : Rs. " + checkingFeeController.text.toString() + "\n\nWill contact you soon after the checking period.\n\nThank you.";
+
+                                                          //   +
+                                                          // "\nPaid Checking fee : Rs. " + checkingFeeController.text.toString() +
+                                                          // "\n\nWill Contact you soon after the checking period.Thank You" ;
+
                                                             // SmsSender sender = new SmsSender();
-                                                            // sender.sendSms(new SmsMessage(phoneController.text, "Your " + itemModelController.text + " is received by PSK Consultants to check."));
+                                                            // sender.sendSms(new SmsMessage(phoneController.text, message));
+
+
+
+
+                                                            final Telephony telephony = Telephony.instance;
+
+                                                            bool permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
+
+                                                            telephony.sendSms(
+                                                                to: phoneController.text,
+                                                                message: msg,
+                                                            );
 
                                                           }
 

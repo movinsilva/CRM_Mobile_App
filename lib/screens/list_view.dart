@@ -107,7 +107,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
 
 
                                         CheckingListItemDetails map1 = CheckingListItemDetails(listViewModel.content[index].itemmodel, listViewModel.content[index].ownersname,
-                                            listViewModel.content[index].invoiceno, listViewModel.content[index].checkingfees, listViewModel.content[index].date, "Checking List");
+                                            listViewModel.content[index].invoiceno, listViewModel.content[index].checkingfees, listViewModel.content[index].date, "Checking List", listViewModel.content[index].phone);
 
                                         Navigator.of(context).pushNamed("/checking_list_item", arguments: map1);
                                       } else if (args == "Checking Finished List") {
@@ -120,7 +120,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                             listViewModel.content[index].timetocomplete,
                                             listViewModel.content[index].checkingfees,
                                             listViewModel.content[index].estimatedfee,
-                                            args);
+                                            args,
+                                        listViewModel.content[index].phone);
                                         Navigator.of(context).pushNamed("/checking_finished_list_item", arguments: map2);
                                       } else if (args == "Started List" || args == "Completed List") {
                                         StartedListItemDetails map3 = StartedListItemDetails(
@@ -133,7 +134,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                             listViewModel.content[index].checkingfees,
                                             listViewModel.content[index].estimatedfee,
                                             listViewModel.content[index].depositamount,
-                                            args);
+                                            args,
+                                        listViewModel.content[index].phone);
 
                                         if (args == "Started List") {
                                           Navigator.of(context).pushNamed("/started_list_item", arguments: map3);
